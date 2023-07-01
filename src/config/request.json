@@ -1,0 +1,42 @@
+[
+    {
+        "name": "ask",
+        "completion": "text",
+        "model": "text-davinci-003",
+        "max_tokens": 4000
+    },
+    {
+         "name": "chatbot",
+         "completion": "chat",
+         "model": "gpt-3.5-turbo"
+    },
+    {
+        "name": "correct",
+        "completion": "edit",
+        "model": "text-davinci-edit-001",
+        "constInstruction": "oprav v tomto textu "
+    },
+    {
+        "name": "recipe",
+        "completion": "text",
+        "model": "text-davinci-003",
+        "max_tokens": 4000
+    },
+    {
+        "name": "story",
+        "completion": "chat",
+        "model": "gpt-3.5-turbo",
+        "constPrompt": ""
+    },
+    {
+        "name": "story3",
+        "completion": "chat",
+        "model": "gpt-3.5-turbo"
+    },
+    {
+        "name": "translate",
+        "completion": "edit",
+        "model": "text-davinci-edit-001",
+        "constInstruction": "přelož tento text do "
+    }
+]
