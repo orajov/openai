@@ -21,6 +21,7 @@
         "name": "recipe",
         "completion": "text",
         "model": "text-davinci-003",
+        "constPrompt": "navrhni mi recept, který se dá vařit z těchto surovin: ",
         "max_tokens": 1000,
         "temperature": 0
     },

@@ -11,7 +11,7 @@ const rl = readline.createInterface({
 main();
 
 function main() {
-    rl.question('Zeptej se mě na cokoliv. ', (prompt) => {
+    rl.question('Zadej suroviny. ', (prompt) => {
         sendPrompt(prompt, name).then(result => {
             console.log(result);
             main();
