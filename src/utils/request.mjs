@@ -50,5 +50,17 @@ export async function sendPrompt(prompt, name, instruction = '') {
         console.error('editError>' + editErr);
         return null;
       }
+  case "image":
+      try {
+          const response = await openai.createImage({
+            "prompt": prompt,
+            "n": config.n,
+            "size": config.size
+          });
+          return response.data;
+        } catch (editErr) {
+          console.error('editError>' + editErr);
+          return null;
+        }
   }
 }

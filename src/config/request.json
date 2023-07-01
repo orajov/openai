@@ -8,7 +8,8 @@
     {
          "name": "chatbot",
          "completion": "chat",
-         "model": "gpt-3.5-turbo"
+         "model": "gpt-3.5-turbo",
+         "temperature": 2
     },
     {
         "name": "correct",
@@ -16,6 +17,12 @@
         "model": "text-davinci-edit-001",
         "constInstruction": "oprav v tomto textu ",
         "temperature": 0
+    },
+    {
+        "name": "image",
+        "completion": "image",
+        "n": 1,
+        "size": "1024x1024"
     },
     {
         "name": "recipe",
@@ -28,12 +35,14 @@
     {
         "name": "story",
         "completion": "chat",
-        "model": "gpt-3.5-turbo"
+        "model": "gpt-3.5-turbo",
+        "temperature": 2
     },
     {
         "name": "story3",
         "completion": "chat",
-        "model": "gpt-3.5-turbo"
+        "model": "gpt-3.5-turbo",
+        "temperature": 2
     },
     {
         "name": "translate",

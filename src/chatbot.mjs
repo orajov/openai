@@ -11,7 +11,7 @@ const rl = readline.createInterface({
 main();
 
 function main() {
-    rl.question('', (prompt) => {
+    rl.question('>', (prompt) => {
         sendPrompt(prompt, name).then(result => {
             console.log(result);
             main();
