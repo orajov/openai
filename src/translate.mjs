@@ -8,12 +8,12 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-const instructionSelectValue = 1;
+const instructionSelectValue = 3;
 
-main(instructionSelectValue);
+main();
 
-function main(value) {
-    const instruction = switchInstruction(value);
+function main() {
+    const instruction = switchInstruction(instructionSelectValue);
 
     rl.question('Text k překladu: ', (prompt) => {
         sendPrompt(prompt, name, instruction).then(result => {

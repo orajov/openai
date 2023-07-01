@@ -13,10 +13,12 @@ export async function sendPrompt(prompt, name, instruction = '') {
   switch (config.completion) {
   case "text":
     try {
+      if(config.constPrompt) prompt = config.constPrompt + instruction + prompt; 
       const response = await openai.createCompletion({
         "prompt": prompt,
         "model": config.model,
-        "max_tokens": config.max_tokens
+        "max_tokens": config.max_tokens,
+        "temperature": config.temperature,
       });
       return response.data.choices[0].text;
     } catch (textErr) {

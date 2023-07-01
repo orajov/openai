@@ -8,14 +8,14 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-const instructionSelectValue = 2;
+const instructionSelectValue = 3;
 
 main(instructionSelectValue);
 
 function main(value) {
     const instruction = switchInstruction(value);
 
-    rl.question('Text k překladu: ', (prompt) => {
+    rl.question('Text k opravě: ', (prompt) => {
         sendPrompt(prompt, name, instruction).then(result => {
             console.log(result);
             main();

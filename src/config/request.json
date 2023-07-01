@@ -14,19 +14,20 @@
         "name": "correct",
         "completion": "edit",
         "model": "text-davinci-edit-001",
-        "constInstruction": "oprav v tomto textu "
+        "constInstruction": "oprav v tomto textu ",
+        "temperature": 0
     },
     {
         "name": "recipe",
         "completion": "text",
         "model": "text-davinci-003",
-        "max_tokens": 4000
+        "max_tokens": 1000,
+        "temperature": 0
     },
     {
         "name": "story",
         "completion": "chat",
-        "model": "gpt-3.5-turbo",
-        "constPrompt": ""
+        "model": "gpt-3.5-turbo"
     },
     {
         "name": "story3",
@@ -35,8 +36,10 @@
     },
     {
         "name": "translate",
-        "completion": "edit",
-        "model": "text-davinci-edit-001",
-        "constInstruction": "přelož tento text do "
+        "completion": "text",
+        "model": "text-davinci-003",
+        "constPrompt": "přelož tento text do ",
+        "max_tokens": 4000,
+        "temperature": 0
     }
 ]

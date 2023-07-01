@@ -14,7 +14,7 @@ const constPrompt = '; nezapomínej na kontext příběhu, který odpovídá tom
 main();
 
 function main() {
-    rl.question('', (varPrompt) => {
+    rl.question('Jak by se měl příběh dál rozvíjet? ', (varPrompt) => {
         sendPrompt(varPrompt + constPrompt, name).then(result => {
             console.log(result);
             main();
