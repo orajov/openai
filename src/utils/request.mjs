@@ -30,7 +30,8 @@ export async function sendPrompt(prompt, name, instruction = '') {
       context.push({ 'role': 'user', 'content': prompt });  
       const response = await openai.createChatCompletion({
         "model": config.model,
-        "messages": context
+        "messages": context,
+        "temperature": config.temperature
       });
       context.push(response.data.choices[0].message);
       return response.data.choices[0].message.content;
