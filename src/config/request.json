@@ -9,7 +9,7 @@
          "name": "chatbot",
          "completion": "chat",
          "model": "gpt-3.5-turbo",
-         "temperature": 2
+         "temperature": 0
     },
     {
         "name": "correct",
