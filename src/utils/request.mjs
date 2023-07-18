@@ -1,3 +1,4 @@
+import fs from 'fs';
 import { Configuration, OpenAIApi } from "openai";
 import data from "../config/request.json" assert {type: 'json'}
 
@@ -7,61 +8,53 @@ const openai = new OpenAIApi(configuration);
 let context = [];
 
 export async function sendPrompt(prompt, name, instruction = '') {
-  const varInstruction = instruction;
   const config = data.find(item => item.name === name);
-
   switch (config.completion) {
   case "text":
-    try {
-      if(config.constPrompt) prompt = config.constPrompt + instruction + prompt; 
-      const response = await openai.createCompletion({
-        "prompt": prompt,
-        "model": config.model,
-        "max_tokens": config.max_tokens,
-        "temperature": config.temperature,
-      });
+    if(config.constPrompt) prompt = config.constPrompt + instruction + prompt; 
+    await openai.createCompletion({
+      "prompt": prompt,
+      "model": config.model,
+      "max_tokens": config.max_tokens,
+      "temperature": config.temperature,
+    }).then( response => {
       return response.data.choices[0].text;
-    } catch (textErr) {
-      console.error('textError>' + textErr);
-      return null;
-    }
+    });
   case "chat":
-    try {
-      context.push({ 'role': 'user', 'content': prompt });  
-      const response = await openai.createChatCompletion({
-        "model": config.model,
-        "messages": context,
-        "temperature": config.temperature
-      });
+    context.push({ 'role': 'user', 'content': prompt });  
+    await openai.createChatCompletion({
+      "model": config.model,
+      "messages": context,
+      "temperature": config.temperature
+    }).then( response => {
       context.push(response.data.choices[0].message);
       return response.data.choices[0].message.content;
-    } catch (chatErr) {
-      console.error('chatError>' + chatErr);
-      return null;
-    }
+    });
   case "edit":
-      try {
-        const response = await openai.createEdit({
-          "model": config.model,
-          "input": prompt,
-          "instruction": config.constInstruction + varInstruction,
-        });
-        return response.data.choices[0].text;
-      } catch (editErr) {
-        console.error('editError>' + editErr);
-        return null;
-      }
+    await openai.createEdit({
+      "model": config.model,
+      "input": prompt,
+      "instruction": config.constInstruction + instruction,
+    }).then( response => {
+      return response.data;
+    });
   case "image":
-      try {
-          const response = await openai.createImage({
-            "prompt": prompt,
-            "n": config.n,
-            "size": config.size
-          });
-          return response.data;
-        } catch (editErr) {
-          console.error('editError>' + editErr);
-          return null;
-        }
+    await openai.createImage({
+      "prompt": prompt,
+      "n": config.n,
+      "size": config.size
+    }).then( response => {
+      return response.data;
+    });   
+  // case "image-edit":
+  //   await openai.createImageEdit(
+  //     fs.createReadStream("files/*.png"),
+  //     fs.createReadStream("files/*.png"),
+  //     prompt,
+  //     config.n,
+  //     config.size
+  //   ).then( response => {
+  //     return response.data;
+  //   });
   }
 }
